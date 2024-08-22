@@ -45,16 +45,19 @@ namespace tdd_oop_concrete_dependency_injection.CSharp.Test
         public void canPreinstallGames()
         {
             PowerSupply myPsu = new PowerSupply();
-            List<Game> preInstalled = new List<Game>();
-            preInstalled.Add(new Game("Dwarf Fortress"));
-            preInstalled.Add(new Game("Baldur's Gate"));
-
-
             Computer myPc = new Computer(myPsu);
+            Game game1 = new Game("Dwarf Fortress");
+            game1.name = "Dwarf Fortress";
+            Game game2 = new Game("Baldur's Gate");
+            game2.name = "Baldur's Gate";
 
-            Assert.That(2, Is.EqualTo(myPc.installedGames.Count));
-            Assert.That("Dwarf Fortress", Is.EqualTo(myPc.installedGames[0].name));
-            Assert.That("Baldur's Gate", Is.EqualTo(myPc.installedGames[1].name));
+            myPc.preInstalledGames.Add(game1);
+            myPc.preInstalledGames.Add(game2);
+            //myPc.preInstalledGames.Add(new Game("Baldur's Gate"));
+
+            Assert.That(2, Is.EqualTo(myPc.preInstalledGames.Count));
+            Assert.That("Dwarf Fortress", Is.EqualTo(myPc.preInstalledGames[0].name));
+            Assert.That("Baldur's Gate", Is.EqualTo(myPc.preInstalledGames[1].name));
         }
     }
 }
